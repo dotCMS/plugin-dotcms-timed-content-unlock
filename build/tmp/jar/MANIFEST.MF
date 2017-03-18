@@ -1,18 +1,10 @@
 Manifest-Version: 1.0
-Export-Package: com.dotcms.job;version="0.1";uses:="com.dotcms.repacka
- ge.org.osgi.framework,com.dotmarketing.osgi,org.quartz"
-Tool: Bnd-2.1.0.20130426-122213
-Bundle-Name: Osgi Quartz Jobs
-Created-By: 1.7.0_45 (Oracle Corporation)
-Override-Classes: com.dotcms.job.UnlockContentTimer
-DynamicImport-Package: *
-Bundle-Vendor: dotcms
-Bundle-Version: 0.1
-Bnd-LastModified: 1434478585000
-Bundle-ManifestVersion: 2
-Bundle-Activator: com.dotcms.job.Activator
 Bundle-Description: dotCMS Timed Unlock Contentlets
 Bundle-SymbolicName: plugin-dotcms-timed-content-unlock
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1489876733430
+Bundle-DocURL: http://www.dotcms.com
+Bundle-Vendor: dotcms
 Import-Package: com.dotcms.repackage.org.osgi.framework;version=0,com.
  dotmarketing.business;version=0,com.dotmarketing.common.db;version=0,
  com.dotmarketing.db;version=0,com.dotmarketing.exception;version=0,co
@@ -20,5 +12,13 @@ Import-Package: com.dotcms.repackage.org.osgi.framework;version=0,com.
  siness;version=0,com.dotmarketing.portlets.contentlet.model;version=0
  ,com.dotmarketing.quartz;version=0,com.dotmarketing.util;version=0,co
  m.liferay.portal.model;version=0,org.quartz;version=0
-Bundle-DocURL: http://www.dotcms.com
+DynamicImport-Package: *
+Tool: Bnd-2.1.0.20130426-122213
+Override-Classes: com.dotcms.job.UnlockContentTimer
+Export-Package: com.dotcms.job;version="3.7.1";uses:="com.dotcms.repac
+ kage.org.osgi.framework,com.dotmarketing.osgi,org.quartz"
+Bundle-Name: Osgi Quartz Jobs
+Bundle-Version: 3.7.1
+Bundle-Activator: com.dotcms.job.Activator
+Created-By: 1.8.0_111 (Oracle Corporation)
 
