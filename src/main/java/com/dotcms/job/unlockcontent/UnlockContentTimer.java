@@ -1,4 +1,4 @@
-package com.dotcms.job;
+package com.dotcms.job.unlockcontent;
 
 import java.util.Calendar;
 import java.util.List;
@@ -11,7 +11,6 @@ import org.quartz.StatefulJob;
 import com.dotmarketing.business.APILocator;
 import com.dotmarketing.common.db.DotConnect;
 import com.dotmarketing.db.DbConnectionFactory;
-import com.dotmarketing.db.HibernateUtil;
 import com.dotmarketing.exception.DotDataException;
 import com.dotmarketing.exception.DotSecurityException;
 import com.dotmarketing.portlets.contentlet.model.Contentlet;
@@ -20,17 +19,21 @@ import com.liferay.portal.model.User;
 
 
 public class UnlockContentTimer implements StatefulJob {
-
+    public final static  String THREAD_SLEEP_BETWEEN_UNLOCKS = "THREAD_SLEEP_BETWEEN_UNLOCKS";
+    public final static  String SQL_LIMIT_CLAUSE = "SQL_LIMIT_CLAUSE";
+    public final static  String UNLOCK_AFTER_SECONDS = "UNLOCK_AFTER_SECONDS";
+    
+    
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
 
 		Logger.info(this, "Timed Unlock: ------------------------------------------");
 
-		String unlockAfter = OSGiPluginProperties.getProperty("UNLOCK_AFTER_SECONDS");
+		int seconds = (Integer) context.get(UNLOCK_AFTER_SECONDS);
 
 		Calendar cal = Calendar.getInstance();
 
-		int seconds = Integer.parseInt(unlockAfter);
+
 
 		cal.add(Calendar.SECOND, -seconds);
 
@@ -41,9 +44,9 @@ public class UnlockContentTimer implements StatefulJob {
 		try {
 			DotConnect db = new DotConnect();
 			
-			
-			int limit  = Integer.parseInt(OSGiPluginProperties.getProperty("SQL_LIMIT_CLAUSE", "1000"));
-			long threadSleep  = Integer.parseInt(OSGiPluginProperties.getProperty("THREAD_SLEEP_BETWEEN_UNLOCKS", "50"));
+		
+			int limit  = (Integer) context.get(SQL_LIMIT_CLAUSE);
+			long threadSleep  = (Long) context.get(THREAD_SLEEP_BETWEEN_UNLOCKS);
 			for(int i=0;i<1000;i++){
 				db.setSQL("select identifier, lang, working_inode from contentlet_version_info where contentlet_version_info.locked_on < ? and locked_by is not null");
 				db.setMaxRows(limit);
@@ -73,11 +76,7 @@ public class UnlockContentTimer implements StatefulJob {
 			Logger.error(this.getClass(), e.getMessage(), e);
 			e.printStackTrace();
 		} finally {
-			try {
-				DbConnectionFactory.closeConnection();
-			} catch (Exception e) {
-				Logger.error(this.getClass(), "Timed Unlock: died trying to close db connection", e);
-			}
+		    DbConnectionFactory.closeSilently();
 		}
 
 

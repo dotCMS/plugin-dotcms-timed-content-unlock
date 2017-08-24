@@ -10,7 +10,7 @@
  * ***************************************************************************** 
  */
 
-package com.dotcms.job;
+package com.dotcms.job.unlockcontent;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,25 +1,4 @@
 Manifest-Version: 1.0
-Bundle-Description: dotCMS Timed Unlock Contentlets
-Bundle-SymbolicName: plugin-dotcms-timed-content-unlock
-Bundle-ManifestVersion: 2
-Bnd-LastModified: 1489170125000
-Bundle-DocURL: http://www.dotcms.com
-Bundle-Vendor: dotcms
-Import-Package: com.dotmarketing.business;version=0,com.dotmarketing.c
- ommon.db;version=0,com.dotmarketing.db;version=0,com.dotmarketing.exc
- eption;version=0,com.dotmarketing.osgi;version=0,com.dotmarketing.por
- tlets.contentlet.business;version=0,com.dotmarketing.portlets.content
- let.model;version=0,com.dotmarketing.quartz;version=0,com.dotmarketin
- g.util;version=0,com.liferay.portal.model;version=0,org.osgi.framewor
- k;version=0,org.quartz;version=0
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
-DynamicImport-Package: *
-Tool: Bnd-3.2.0.201605172007
-Override-Classes: com.dotcms.job.UnlockContentTimer
-Export-Package: com.dotcms.job;version="0.1";uses:="com.dotmarketing.o
- sgi,org.osgi.framework,org.quartz"
-Bundle-Name: Osgi Quartz Jobs
-Bundle-Version: 0.1
-Bundle-Activator: com.dotcms.job.Activator
-Created-By: 1.8.0_112 (Oracle Corporation)
+Export-Package: com.dotcms.job.unlockcontent
+Bundle-Activator: com.dotcms.job.unlockcontent.Activator
 
