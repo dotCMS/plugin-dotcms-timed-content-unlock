@@ -23,7 +23,7 @@ jar {
     manifest {
         attributes (
             'Bundle-Activator': 'com.dotcms.job.unlockcontent.Activator',
-            'Export-Package' : 'com.dotcms.job.unlockcontent',
+            'Override-Classes' : 'com.dotcms.job.unlockcontent.UnlockContentTimer, com.dotcms.job.unlockcontent.OSGiPluginProperties',
         )
     }
 }

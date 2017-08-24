@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Export-Package: com.dotcms.job.unlockcontent
-Bundle-Activator: com.dotcms.job.unlockcontent.Activator
-
