@@ -14,7 +14,7 @@ repositories {
 
 
 dependencies {
-    compile ('com.dotcms:dotcms:4.1.1'){ transitive = true }
+    compile ('com.dotcms:dotcms:5.0.0'){ transitive = true }
 }
 
 
@@ -23,12 +23,11 @@ jar {
     manifest {
         attributes (
             'Bundle-Activator': 'com.dotcms.job.unlockcontent.Activator',
-            'Override-Classes' : 'com.dotcms.job.unlockcontent.UnlockContentTimer,com.dotcms.job.unlockcontent.OSGiPluginProperties',
-      
+            'Override-Classes': 'com.dotcms.job.unlockcontent.UnlockContentTimer,com.dotcms.job.unlockcontent.OSGiPluginProperties',
         )
     }
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '3.5'
+    gradleVersion = '4.2'
 }
